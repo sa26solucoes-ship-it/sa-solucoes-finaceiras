@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SA Soluções Financeiras | Crédito Consignado, FGTS, INSS e SIAPE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        :root {
+            --azul-escuro: #002B7C;
+            --azul-logo: #0A2360;
+            --laranja: #FF8C00;
+            --laranja-escuro: #E67E00;
+            --branco: #FFFFFF;
+            --cinza-claro: #F5F7FA;
+            --cinza-texto: #333333;
+        }
+
+        body {
+            color: var(--cinza-texto);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: var(--branco);
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo Exata */
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-symbol {
+            position: relative;
+            width: 72px;
+            height: 55px;
+            margin-right: 12px;
+        }
+
+        .s-letter {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 50px;
+            font-weight: 900;
+            color: var(--azul-logo);
+            line-height: 1;
+            font-style: normal;
+        }
+
+        .s-dot-top {
+            position: absolute;
+            top: 0;
+            left: 22px;
+            width: 10px;
+            height: 5px;
+            background-color: var(--azul-logo);
+        }
+
+        .s-dot-bottom {
+            position: absolute;
+            bottom: 4px;
+            left: 22px;
+            width: 10px;
+            height: 5px;
+            background-color: var(--azul-logo);
+        }
+
+        .a-letter {
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 50px;
+            font-weight: 900;
+            color: var(--laranja);
+            line-height: 1;
+        }
+
+        .logo-text-group {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo-line1 {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--azul-logo);
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .logo-line2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--laranja);
+            position: relative;
+            display: inline-block;
+            line-height: 1.2;
+        }
+
+        .logo-line2::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--azul-logo);
+        }
+
+        nav a {
+            color: var(--azul-logo);
+            text-decoration: none;
+            margin-left: 22px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--laranja);
+        }
+
+        .btn-whatsapp-header {
+            background-color: var(--laranja);
+            color: var(--branco) !important;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn-whatsapp-header:hover {
+            background-color: var(--laranja-escuro);
+        }
+
+        .menu-toggle {
+            display: none;
+            color: var(--azul-logo);
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-logo) 100%);
+            color: var(--branco);
+            padding: 160px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,140,0,0.08));
+            clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--laranja);
+        }
+
+        .hero p {
+            font-size: 19px;
+            max-width: 850px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+        }
+
+        .btn-principal {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--laranja);
+            color: var(--branco);
+            font-size: 18px;
+            font-weight: bold;
+            padding: 16px 38px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.35);
+        }
+
+        .btn-principal:hover {
+            background-color: var(--laranja-escuro);
+            transform: translateY(-3px);
+        }
+
+        .hero-tagline {
+            font-size: 17px;
+            font-style: italic;
+            margin-top: 25px;
+            color: #FFD6A0;
+        }
+
+        /* Seções Comuns */
+        section {
+            padding: 70px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            color: var(--azul-logo);
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: var(--laranja);
+        }
+
+        /* Diferenciais */
+        .destaques {
+            background-color: var(--cinza-claro);
+        }
+
+        .destaques-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .destaque-card {
+            background: var(--branco);
+            padding: 30px 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            border-top: 4px solid var(--laranja);
+            transition: transform 0.3s;
+        }
+
+        .destaque-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .destaque-card h3 {
+            color: var(--azul-logo);
+            font-size: 20px;
+            margin: 12px 0;
+        }
+
+        .destaque-card p {
+            font-size: 15px;
+            color: #555;
+        }
+
+        /* Serviços */
+        .servicos {
+            background-color: var(--branco);
+        }
+
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .servico-card {
+            background: var(--cinza-claro);
+            border-radius: 12px;
+            padding: 28px;
+            transition: all 0.3s;
+            border-left: 4px solid var(--azul-logo);
+        }
+
+        .servico-card:hover {
+            border-left-color: var(--laranja);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+
+        .servico-card h3 {
+            color: var(--azul-logo);
+            font-size: 18px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .servico-card p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 18px;
+        }
+
+        .btn-servico {
+            display: inline-block;
+            background-color: var(--azul-logo);
+            color: var(--branco);
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-servico:hover {
+            background-color: var(--laranja);
+        }
+
+        /* Como Trabalhamos */
+        .comofunciona {
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-logo) 100%);
+            color: var(--branco);
+        }
+
+        .comofunciona .section-title {
+            color: var(--branco);
+        }
+
+        .passos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .passo {
+            text-align: center;
+            background: rgba(255,255,255,0.08);
+            padding: 30px 20px;
+            border-radius: 12px;
+        }
+
+        .passo-numero {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--laranja);
+            color: var(--branco);
+            font-size: 22px;
+            font-weight: bold;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .passo h4 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .passo p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+        /* Parceiros */
+        .parceiros {
+            background-color: var(--cinza-claro);
+        }
+
+        .parceiros-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 18px;
+        }
+
+        .parceiro-item {
+            background: var(--branco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--azul-logo);
+            font-size: 14px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        }
+
+        .parceiros-nota {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 16px;
+            color: var(--azul-logo);
+            font-weight: 500;
+        }
+
+        /* Sobre Nós */
+        .sobre {
+            background-color: var(--branco);
+        }
+
+        .sobre-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .sobre-metricas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .metrica-item {
+            text-align: center;
+        }
+
+        .metrica-valor {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--laranja);
+        }
+
+        .metrica-texto {
+            color: var(--azul-logo);
+            font-weight: 500;
+        }
+
+        /* Contato */
+        .contato {
+            background-color: var(--azul-logo);
+            color: var(--branco);
+        }
+
+        .contato .section-title {
+            color: var(--branco);
+        }
+
+        .contato-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .contato-item h3 {
+            color: var(--laranja);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .contato-item a {
+            color: var(--branco);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contato-item a:hover {
+            color: var(--laranja);
+        }
+
+        /* FAQ */
+        .faq {
+            background-color: var(--cinza-claro);
+        }
+
+        .faq-item {
+            background: var(--branco);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-pergunta {
+            background: var(--azul-logo);
+            color: var(--branco);
+            padding: 18px 25px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .faq-resposta {
+            padding: 20px 25px;
+            display: none;
+            background: #FEFEFE;
+        }
+
+        .faq-item.active .faq-resposta {
+            display: block;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #051440;
+            color: var(--branco);
+            text-align: center;
+            padding: 35px 0;
+        }
+
+        footer p {
+            font-size: 15px;
+        }
+
+        /* Botão WhatsApp Fixo */
+        .whatsapp-fixo {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 999;
+        }
+
+        .whatsapp-fixo a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #25D366;
+            color: white;
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-fixo a:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--branco);
+                padding: 20px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav a {
+                display: block;
+                margin: 15px 0;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .logo-symbol {
+                width: 58px;
+                height: 44px;
+            }
+
+            .s-letter, .a-letter {
+                font-size: 40px;
+            }
+
+            .logo-line1 {
+                font-size: 17px;
+            }
+
+            .logo-line2 {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container header-content">
+            <!-- Logo Exata -->
+            <a href="#inicio" class="logo-wrapper">
+                <div class="logo-symbol">
+                    <span class="s-letter">S</span>
+                    <span class="a-letter">A</span>
+                    <div class="s-dot-top"></div>
+                    <div class="s-dot-bottom"></div>
+                </div>
+                <div class="logo-text-group">
+                    <div class="logo-line1">SOLUÇÕES</div>
+                    <div class="logo-line2">FINANCEIRAS</div>
+                </div>
+            </a>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+            <nav id="nav-menu">
+                <a href="#inicio">Início</a>
+                <a href="#destaques">Diferenciais</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#como-trabalhamos">Como Funciona</a>
+                <a href="#parceiros">Parceiros</a>
+                <a href="#contato">Contato</a>
+                <a href="https://wa.me/5562993241582" target="_blank" class="btn-whatsapp-header">📱 WhatsApp</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Seção Início -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Soluções financeiras para <span>transformar sonhos em conquistas!</span></h1>
+            <p>Atendemos em todo o Brasil e ajudamos você a realizar seus projetos com agilidade, segurança e as melhores condições de crédito.</p>
+            <a href="https://wa.me/5562993241582?text=Olá! Conheci a SA Soluções Financeiras e gostaria de mais informações. Pode me ajudar?" target="_blank" class="btn-principal">💬 Falar com um Especialista</a>
+            <p class="hero-tagline">"Seu sonho, nosso compromisso"</p>
+        </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section class="destaques" id="destaques">
+        <div class="container">
+            <h2 class="section-title">Nossos <span>Diferenciais</span></h2>
+            <div class="destaques-grid">
+                <div class="destaque-card">
+                    <h3>🛡️ Confiança</h3>
+                    <p>Mais de 12 anos de experiência em todo o Brasil</p>
+                </div>
+                <div class="destaque-card">
+                    <h3>🤝 Rede Forte</h3>
+                    <p>Mais de 30 bancos e instituições parceiras</p>
+                </div>
+                <div class="destaque-card">
+                    <h3>🎯 Missão</h3>
+                    <p>Oferecer as melhores condições de crédito para todos os perfis</p>
+                </div>
+                <div class="destaque-card">
+                    <h3>💬 Atendimento</h3>
+                    <p>Personalizado, ágil e com total sigilo e segurança</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section class="servicos" id="servicos">
+        <div class="container">
+            <h2 class="section-title">Linhas de <span>Crédito</span></h2>
+            <div class="servicos-grid">
+                <div class="servico-card">
+                    <h3>👴 Consignado Aposentado e Pensionista</h3>
+                    <p>Condições especiais para beneficiários do INSS com taxas reduzidas.</p>
+                    <a href="https://wa.me/5562993241582?text=Olá! Quero informações sobre Crédito Consignado para Aposentados e Pensionistas." target="_blank" class="btn-servico">Simular →</a>
+                </div>
+                <div class="servico-card">
+                    <h3>🏛️ Consignado Federal / SIAPE</h3>
+                    <p>Crédito para servidores públicos federais — juros baixos, 100% seguro e liberação rápida.</p>
+                    <a href="https://wa.me/5562993241582?text=Olá! Sou servidor SIAPE e quero simular meu crédito." target="_blank" class="btn-servico">Simular →</a>
+                </div>
+                <div class="servico-card">
+                    <h3>🏫 Consignado Estadual</h3>
+                    <p>Crédito com desconto em folha para servidores estaduais.</p>
+                    <a href="https://wa.me/5562993241582?text=Olá! Gostaria de saber sobre Consignado Estadual." target="_blank" class="btn-servico">Simular →</a>
+                </div>
+                <div class="servico-card">
+                    <h3>⚔️ Consignado Forças Armadas</h3>
+                    <p>Condições exclusivas para militares das Forças Armadas.</p>
+                    <a href="https://wa.me/5562993241582?text=Olá! Quero informações sobre Consignado para Forças Armadas." target="_blank" class="btn-servico">Simular →</a>
+                </div>
+                <div class="servico-card">
+                    <h3>💳 Cartão de Crédito Consignado</h3>
+                    <p>Taxas reduzidas e limite disponível para saque.</p>
+                    <a href="https://wa.me/5562993241582?text=Olá! Quero saber sobre Cartão de Crédito Consignado." target="_blank" class="btn-servico">Simular →</a>
+                </div>
+                <div class="servico-card">
+                    <h3>💱 Troca de Limite do Cartão por Pix</h3>
+                    <p>Use o limite do seu cartão e receba na conta via Pix.</p>
+                    <a href="https://wa.me/5562993241582?text=Olá! Quero saber sobre Troca de Limite por Pix." target="_blank" class="btn-servico">Simular →</a>
+                </div>
+                <div class="servico-card">
+                    <h3>🏢 Consignado Trabalhador CLT</h3>
+                    <p>Para trabalhadores de empresas conveniadas.</p>
+                    <a href="https://wa.me/5562993241582?text=Olá! Quero informações sobre Consignado CLT." target="_blank" class="btn-servico">Simular →</a>
+                </div>
+                <div class="servico-card">
+                    <h3>🏠 Financiamento / Refinanciamento de Imóveis</h3>
+                    <p>Realize a compra da sua casa ou reduza suas parcelas.</p>
+                    <a href="https://wa.me/5562993241582?text=Olá! Preciso de Financiamento ou Refinanciamento de Imóvel." target="_blank" class="btn-servico">Simular →</a>
+                </div>
+                <div class="servico-card">
+                    <h3>🚗 Financiamento / Refinanciamento de Veículos</h3>
+                    <p>Condições especiais para compra ou refinanciamento.</p>
+                    <a href="https://wa.me/5562993241582?text=Olá! Quero saber sobre Financiamento de Veículos." target="_blank" class="btn-servico">Simular →</a>
+                </div>
+                <div class="servico-card">
+                    <h3>💰 Consórcios</h3>
+                    <p>Planeje seu futuro com consórcios de imóveis, veículos e serviços.</p>
+                    <a href="https://wa.me/5562993241582?text=Olá! Quero informações sobre Consórcios." target="_blank" class="btn-servico">Simular →</a>
+                </div>
+                <div class="servico-card">
+                    <h3>🛡️ Seguros</h3>
+                    <p>Proteção para você e sua família com as melhores seguradoras.</p>
+                    <a href="https://wa.me/5562993241582?text=Olá! Quero saber sobre Seguros." target="_blank" class="btn-servico">Simular →</a>
+                </div>
+                <div class="servico-card">
+                    <h3>💵 Empréstimos Pessoais</h3>
+                    <p>Crédito pessoal rápido e sem complicação.</p>
+                    <a href="https://wa.me/5562993241582?text=Olá! Preciso de Empréstimo Pessoal." target="_blank" class="btn-servico">Simular →</a>
+                </div>
+                <div class="servico-card">
+                    <h3>⚡ Conta de Luz</h3>
+                    <p>Regularização e parcelamento de conta de energia.</p>
+                    <a href="https://wa.me/5562993241582?text=Olá! Preciso de ajuda com conta de luz." target="_blank" class="btn-servico">Simular →</a>
+                </div>
+                <div class="servico-card">
+                    <h3>☀️ Energia Solar Fotovoltaica</h3>
+                    <p>Economia e sustentabilidade para sua casa ou empresa.</p>
+                    <a href="https://wa.me/5562993241582?text=Olá! Quero saber sobre Energia Solar." target="_blank" class="btn-servico">Simular →</a>
+                </div>
+                <div class="servico-card">
+                    <h3>📊 Consultoria Financeira</h3>
+                    <p>Orientação especializada para organizar sua vida financeira.</p>
+                    <a href="https://wa.me/5562993241582?text=Olá! Preciso de Consultoria Financeira." target="_blank" class="btn-servico">Simular →</a>
+                </div>
+                <div class="servico-card">
+                    <h3>🏦 Saque FGTS</h3>
+                    <p>Antecipe o saque do seu FGTS de forma simples e rápido.</p>
+                    <a href="https://wa.me/5562993241582?text=Olá! Quero fazer o Saque do FGTS." target="_blank" class="btn-servico">Simular →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Como Trabalhamos -->
+    <section class="comofunciona" id="como-trabalhamos">
+        <div class="container">
+            <h2 class="section-title">Como <span>Trabalhamos</span></h2>
+            <div class="passos">
+                <div class="passo">
+                    <div class="passo-numero">01</div>
+                    <h4>Atendimento Personalizado</h4>
+                    <p>Entendemos sua necessidade</p>
+                </div>
+                <div class="passo">
+                    <div class="passo-numero">02</div>
+                    <h4>Análise de Perfil</h4>
+                    <p>Estudamos seu perfil e as melhores opções</p>
+                </div>
+                <div class="passo">
+                    <div class="passo-numero">03</div>
+                    <h4>Propostas Personalizadas</h4>
+                    <p>Apresentamos as melhores condições</p>
+                </div>
+                <div class="passo">
+                    <div class="passo-numero">04</div>
+                    <h4>Aprovação Ágil e Segura</h4>
+                    <p>Trabalhamos com responsabilidade e sigilo</p>
+                </div>
+                <div class="passo">
+                    <div class="passo-numero">05</div>
+                    <h4>Acompanhamento Completo</h4>
+                    <p>Do início ao fim, estamos com você!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parceiros -->
+    <section class="parceiros" id="parceiros">
+        <div class="container">
+            <h2 class="section-title">Nossos <span>Parceiros</span></h2>
+            <div class="parceiros-logos">
+                <span class="parceiro-item">Agoracred</span>
+                <span class="parceiro-item">C6 Bank</span>
+                <span class="parceiro-item">Itaú</span>
+                <span class="parceiro-item">Bradesco</span>
+                <span class="parceiro-item">Banco Daycoval</span>
+                <span class="parceiro-item">Banco do Brasil</span>
+                <span class="parceiro-item">Caixa Econômica</span>
+                <span class="parceiro-item">Safra</span>
+                <span class="parceiro-item">Pan</span>
+                <span class="parceiro-item">Santander</span>
+                <span class="parceiro-item">Aliro Seguro</span>
+                <span class="parceiro-item">Allianz</span>
+                <span class="parceiro-item">Azul Seguros</span>
+                <span class="parceiro-item">Mapfre</span>
+                <span class="parceiro-item">BMG</span>
+                <span class="parceiro-item">Crefisa</span>
+                <span class="parceiro-item">Inter</span>
+                <span class="parceiro-item">Porto Seguro</span>
+                <span class="parceiro-item">Zurich</span>
+                <span class="parceiro-item">e muito mais!</span>
+            </div>
+            <p class="parceiros-nota">✅ Mais de 30 bancos e instituições parceiras para oferecer sempre a melhor solução para você!</p>
+        </div>
+    </section>
+
+    <!-- Sobre Nós -->
+    <section class="sobre" id="sobre">
+        <div class="container">
+            <h2 class="section-title">Sobre a <span>SA Soluções</span></h2>
+            <div class="sobre-content">
+                <p>A SA Soluções Financeiras atua em todo o Brasil com mais de 12 anos de experiência, oferecendo as melhores condições de crédito com transparência, ética e segurança.</p>
+                <br>
+                <p>Contamos com uma rede forte de mais de 30 instituições parceiras, garantindo que você tenha acesso às melhores taxas e condições do mercado.</p>
+            </div>
+            <div class="sobre-metricas">
+                <div class="metrica-item">
+                    <div class="metrica-valor">12+</div>
+                    <div class="metrica-texto">Anos de Experiência</div>
+                </div>
+                <div class="metrica-item">
+                    <div class="metrica-valor">30+</div>
+                    <div class="metrica-texto">Parceiros</div>
+                </div>
+                <div class="metrica-item">
+                    <div class="metrica-valor">100%</div>
+                    <div class="metrica-texto">Segurança e Sigilo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="contato" id="contato">
+        <div class="container">
+            <h2 class="section-title">Entre em <span>Contato</span></h2>
+            <div class="contato-grid">
+                <div class="contato-item">
+                    <h3>📱 WhatsApp</h3>
+                    <p><a href="https://wa.me/5562993241582" target="_blank">(62) 99324-1582</a></p>
+                    <p><a href="https://wa.me/5562992646524" target="_blank">(62) 99264-6524</a></p>
+                </div>
+                <div class="contato-item">
+                    <h3>📧 E-mail</h3>
+                    <p><a href="mailto:sa.26solucoes@gmail.com">sa.26solucoes@gmail.com</a></p>
+                </div>
+                <div class="contato-item">
+                    <h3>🕒 Horário de Atendimento</h3>
+                    <p>Segunda a Sexta</p>
+                    <p>09:00 às 17:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Dúvidas <span>Frequentes</span></h2>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-pergunta">❓ Quem pode contratar o crédito consignado?</div>
+                <div class="faq-resposta">Aposentados e pensionistas do INSS, servidores públicos federais, estaduais, militares e trabalhadores de empresas conveniadas. Consulte-nos!</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-pergunta">❓ Como funciona o crédito SIAPE?</div>
+                <div class="faq-resposta">Para servidores públicos federais ativos, aposentados e pensionistas do SIAPE. Juros baixos, 100% seguro com desconto em folha e liberação rápida.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-pergunta">❓ Quais são os documentos necessários?</div>
+                <div class="faq-resposta">Documento de identificação, CPF, comprovante de residência e contracheque ou extrato de benefício. Fale conosco e te ajudamos passo a passo!</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-pergunta">❓ O processo é seguro?</div>
+                <div class="faq-resposta">Sim! Trabalhamos com mais de 30 instituições parceiras reconhecidas no mercado. Seus dados são protegidos e todo processo é transparente.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-pergunta">❓ Quanto tempo leva para liberar o crédito?</div>
+                <div class="faq-resposta">Após envio e aprovação dos documentos, o valor é liberado rapidamente. O prazo exato depende da modalidade e instituição financeira, mas buscamos sempre a maior agilidade.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <p><strong>SA Soluções Financeiras</strong></p>
+            <p style="margin-top: 8px; font-size: 14px;">Crédito Consignado • FGTS • INSS • SIAPE • Empréstimos • Seguros • e mais</p>
+            <p style="margin-top: 12px; font-size: 13px; opacity: 0.75;">© 2026 SA Soluções Financeiras. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Botão WhatsApp Fixo -->
+    <div class="whatsapp-fixo">
+        <a href="https://wa.me/5562993241582?text=Olá! Conheci seu site e gostaria de atendimento. Pode me ajudar?" target="_blank">💬</a>
+    </div>
+
+    <script>
+        // Menu mobile
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            menu.classList.toggle('active');
+        }
+
+        // FAQ accordion
+        function toggleFaq(element) {
+            const isActive = element.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            if (!isActive) {
+                element.classList.add('active');
+            }
+        }
+
+        // Fecha menu ao clicar em um link (mobile)
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-menu').classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
